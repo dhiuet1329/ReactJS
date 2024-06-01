@@ -27,8 +27,13 @@ const Dashboard = ({ data }) => {
               <td>{p.title}</td>
               <td>{p.price}</td>
               <td>
-                <img src={p.thumbnail} alt="" />
+                {p.thumbnail ? (
+                  <img src={p.thumbnail} alt={p.title} />
+                ) : (
+                  "Updating"
+                )}
               </td>
+              <td>{p.description}</td>
               <td>
                 <button className="btn btn-primary">Sua</button>
                 <button className="btn btn-danger">Xoa</button>

@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.scss";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -6,15 +6,32 @@ import Dashboard from "./pages/admin/Dashboard";
 import { useEffect, useState } from "react";
 import api from "./axios";
 import ProductDetail from "./pages/ProductDetail";
+import ProductAdd from "./pages/admin/ProductAdd";
+import Notfound from "./pages/NotFound";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     (async () => {
       const { data } = await api.get("/products");
       setProducts(data);
     })();
   }, []);
+  const handleSubmit = (data) => {
+    console.log(data);
+    (async () => {
+      try {
+        const res = await api.post("/products", data);
+        setProducts([...products, res.data]);
+        if (confirm("Add succefully, redirect to admin page?")) {
+          navigate("/admin");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  };
   return (
     //Cách sử dụng JSX
     <div>
@@ -39,8 +56,9 @@ function App() {
           <Route path="/admin" element={<Dashboard data={products} />} />
           <Route
             path="/admin/product-add"
-            element={<Dashboard data={products} />}
+            element={<ProductAdd onAddProduct={handleSubmit} />}
           />
+          <Route path="*" element={<Notfound />} />
         </Routes>
       </main>
     </div>
