@@ -8,6 +8,7 @@ import api from "./axios";
 import ProductDetail from "./pages/ProductDetail";
 import ProductAdd from "./pages/admin/ProductAdd";
 import Notfound from "./pages/NotFound";
+import ProductEdit from "./pages/admin/ProductEdit";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -23,6 +24,20 @@ function App() {
     (async () => {
       try {
         const res = await api.post("/products", data);
+        setProducts([...products, res.data]);
+        if (confirm("Add succefully, redirect to admin page?")) {
+          navigate("/admin");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  };
+  const handleSubmitEdit = (data) => {
+    // console.log(data);
+    (async () => {
+      try {
+        const res = await api.patch(`/products/${data.id}`, data);
         setProducts([...products, res.data]);
         if (confirm("Add succefully, redirect to admin page?")) {
           navigate("/admin");
@@ -57,6 +72,10 @@ function App() {
           <Route
             path="/admin/product-add"
             element={<ProductAdd onAddProduct={handleSubmit} />}
+          />
+          <Route
+            path="/admin/product-edit/:id"
+            element={<ProductEdit onEditProduct={handleSubmitEdit} />}
           />
           <Route path="*" element={<Notfound />} />
         </Routes>

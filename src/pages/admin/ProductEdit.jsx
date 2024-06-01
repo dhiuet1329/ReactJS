@@ -1,9 +1,11 @@
 // import React from "react";
-import PropTypes from "prop-types";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { useEffect } from "react";
+import api from "../../axios";
+import { useParams } from "react-router-dom";
 /**
  * ! BTVN:
  * 1. validation title required, it nhat 6 ky tu
@@ -15,22 +17,35 @@ const productSchema = z.object({
   price: z.number().min(0),
   description: z.string().optional(),
 });
-const ProductAdd = ({ onAddProduct }) => {
+// eslint-disable-next-line react/prop-types
+const ProductEdit = ({ onEditProduct }) => {
+  const { id } = useParams();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(productSchema),
   });
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await api.get(`/products/${id}`);
+        reset(data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
   const onSubmit = (data) => {
-    console.log(data);
-    onAddProduct(data);
+    // console.log(data);
+    onEditProduct({ ...data, id });
   };
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Product ADD</h1>
+        <h1>Product EDIT</h1>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
             Title
@@ -75,7 +90,7 @@ const ProductAdd = ({ onAddProduct }) => {
         </div>
         <div className="mb-3">
           <button type="submit" className="btn btn-primary w-100">
-            Add product
+            Update
           </button>
         </div>
       </form>
@@ -83,7 +98,4 @@ const ProductAdd = ({ onAddProduct }) => {
   );
 };
 
-ProductAdd.propTypes = {
-  onAddProduct: PropTypes.func.isRequired,
-};
-export default ProductAdd;
+export default ProductEdit;

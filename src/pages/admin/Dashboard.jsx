@@ -35,7 +35,12 @@ const Dashboard = ({ data }) => {
               </td>
               <td>{p.description || "Updating.."} </td>
               <td>
-                <button className="btn btn-primary">Sua</button>
+                <Link
+                  to={`/admin/product-edit/${p.id}`}
+                  className="btn btn-primary"
+                >
+                  EDIT
+                </Link>
                 <button className="btn btn-danger">Xoa</button>
               </td>
             </tr>
