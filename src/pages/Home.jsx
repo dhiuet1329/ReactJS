@@ -16,7 +16,7 @@ const Home = ({ data }) => {
               </Link>
               <div className="content">
                 <Link to={`/product-detail/${item.id}`}>
-                  <h2>{item.title}</h2>
+                  <h2 className="content-title">{item.title}</h2>
                 </Link>
                 <p>Price: {item.price}</p>
                 <button className="btn btn-primary">Mua ngay</button>

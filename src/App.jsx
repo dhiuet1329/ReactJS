@@ -19,7 +19,7 @@ function App() {
     })();
   }, []);
   const handleSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     (async () => {
       try {
         const res = await api.post("/products", data);
