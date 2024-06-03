@@ -2,21 +2,17 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+
 import { useEffect } from "react";
 import api from "../../axios";
 import { useParams } from "react-router-dom";
+import productSchema from "../../schemaValid/productSchema";
 /**
  * ! BTVN:
  * 1. validation title required, it nhat 6 ky tu
  * 2. validation price required, >=0
  */
 
-const productSchema = z.object({
-  title: z.string().min(6, { message: "Toi thieu 6 ki tu" }).max(100),
-  price: z.number().min(0),
-  description: z.string().optional(),
-});
 // eslint-disable-next-line react/prop-types
 const ProductEdit = ({ onEditProduct }) => {
   const { id } = useParams();

@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Dashboard from "./pages/admin/Dashboard";
 import { useEffect, useState } from "react";
-import api from "./axios";
+import api, { getProducts } from "./axios";
 import ProductDetail from "./pages/ProductDetail";
 import ProductAdd from "./pages/admin/ProductAdd";
 import Notfound from "./pages/NotFound";
@@ -37,9 +37,16 @@ function App() {
     // console.log(data);
     (async () => {
       try {
-        const res = await api.patch(`/products/${data.id}`, data);
-        setProducts([...products, res.data]);
-        if (confirm("Add succefully, redirect to admin page?")) {
+        await api.patch(`/products/${data.id}`, data);
+        const newData = await getProducts();
+        console.log(newData);
+        // setProducts(
+        //   products.map((products) =>
+        //     products.id === data.id ? data : products
+        //   )
+        // );
+        setProducts(newData);
+        if (confirm("Edit succefully, redirect to admin page?")) {
           navigate("/admin");
         }
       } catch (error) {
