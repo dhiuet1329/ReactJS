@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 
 import { Link } from "react-router-dom";
 
-const Dashboard = ({ data }) => {
+// eslint-disable-next-line react/prop-types
+const Dashboard = ({ data, remove }) => {
+  console.log(data);
   return (
     <div>
       <h1>Xin chao Admin</h1>
-      <Link to="/admin/product-add" className="btn btn-success">
+      <Link to="/admin/product-form" className="btn btn-success">
         Add new product
       </Link>
       <table className="table table-bordered">
@@ -36,12 +38,14 @@ const Dashboard = ({ data }) => {
               <td>{p.description || "Updating.."} </td>
               <td>
                 <Link
-                  to={`/admin/product-edit/${p.id}`}
+                  to={`/admin/product-form/${p.id}`}
                   className="btn btn-primary"
                 >
                   EDIT
                 </Link>
-                <button className="btn btn-danger">Xoa</button>
+                <button onClick={() => remove(p.id)} className="btn btn-danger">
+                  Xoa
+                </button>
               </td>
             </tr>
           ))}
