@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.scss";
 import api, { getProducts } from "./axios";
+import Footer from "./conponents/Footer";
+import Header from "./conponents/Header";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -20,41 +22,6 @@ function App() {
       setProducts(data);
     })();
   }, []);
-  // const handleSubmit = (data) => {
-  //   // console.log(data);
-  //   (async () => {
-  //     try {
-  //       const res = await api.post("/products", data);
-  //       setProducts([...products, res.data]);
-  //       if (confirm("Add succefully, redirect to admin page?")) {
-  //         navigate("/admin");
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // };
-  // const handleSubmitEdit = (data) => {
-  //   // console.log(data);
-  //   (async () => {
-  //     try {
-  //       await api.patch(`/products/${data.id}`, data);
-  //       const newData = await getProducts();
-  //       console.log(newData);
-  //       // setProducts(
-  //       //   products.map((products) =>
-  //       //     products.id === data.id ? data : products
-  //       //   )
-  //       // );
-  //       setProducts(newData);
-  //       if (confirm("Edit succefully, redirect to admin page?")) {
-  //         navigate("/admin");
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // };
 
   const handleSubmitForm = (data) => {
     // console.log(data);
@@ -101,45 +68,25 @@ function App() {
       }
     })();
   };
+  console.log(<Header />);
   return (
     //Cách sử dụng JSX
     <div>
-      <header>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/admin">Admin</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-        </ul>
-      </header>
+      <Header />
       <main className="container">
         <Routes>
-          <Route path="/" element={<Home data={products} />} />
+          {/* path for client */}
+          <Route index element={<Home data={products} />} />
+          <Route path="/home" element={<Navigate to="/" />} />
           <Route path="product-detail/:id" element={<ProductDetail />} />
           <Route path="/about" element={<About />} />
+
+          {/* path for admin */}
+
           <Route
             path="/admin"
             element={<Dashboard data={products} remove={handleRemove} />}
           />
-          {/* <Route
-            path="/admin/product-add"
-            element={<ProductAdd onAddProduct={handleSubmit} />}
-          />
-          <Route
-            path="/admin/product-edit/:id"
-            element={<ProductEdit onEditProduct={handleSubmitEdit} />}
-          /> */}
           <Route
             path="/admin/product-form/"
             element={<ProductForm onProduct={handleSubmitForm} />}
@@ -148,11 +95,14 @@ function App() {
             path="/admin/product-form/:id"
             element={<ProductForm onProduct={handleSubmitForm} />}
           />
+          {/* path empty */}
+
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }

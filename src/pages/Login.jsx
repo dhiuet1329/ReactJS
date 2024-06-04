@@ -26,6 +26,7 @@ const Login = () => {
     (async () => {
       try {
         const res = await api.post(`/login`, data);
+        console.log(res);
         if (confirm("Đăng nhập thành công. Trở về trang chủ ?")) {
           nav("/");
         }
