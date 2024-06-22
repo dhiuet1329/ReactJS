@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 // import React from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { loginSchema, registerSchema } from "../schemaValid/authSchema";
 import instance from "../axios";
@@ -96,5 +97,7 @@ const AuthForm = ({ isRegister }) => {
     </div>
   );
 };
-
+AuthForm.propTypes = {
+  isRegister: PropTypes.bool.isRequired,
+};
 export default AuthForm;

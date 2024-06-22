@@ -22,8 +22,8 @@ const ProductForm = ({ onProduct }) => {
   } = useForm({
     resolver: zodResolver(productSchema),
   });
-  if (id) {
-    useEffect(() => {
+  useEffect(() => {
+    if (id) {
       (async () => {
         try {
           const { data } = await instance.get(`/products/${id}`);
@@ -32,7 +32,8 @@ const ProductForm = ({ onProduct }) => {
           console.log(error);
         }
       })();
-    }, []);
+    }
+  }, [id]);
   }
   const onSubmit = (data) => {
     onProduct({ ...data, id: id });

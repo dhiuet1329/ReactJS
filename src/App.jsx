@@ -96,7 +96,6 @@ function App() {
               element={<ProductForm onProduct={handleSubmitForm} />}
             />
           </Route>
-          <Route path="/taisan" element={<TaiSan />} />
           <Route path="/login" element={<AuthForm />} />
           <Route path="/register" element={<AuthForm isRegister />} />
           <Route path="*" element={<Notfound />} />
