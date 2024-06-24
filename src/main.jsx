@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.scss";
-import { BrowserRouter } from "react-router-dom";
 import { TaiSanContext } from "./contexts/TaiSanContext.jsx";
 
-const taisan = [
+const taiSan = [
   {
     id: 1,
     name: "Tivi",
@@ -20,8 +20,9 @@ const taisan = [
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <TaiSanContext.Provider value={taisan} />
-      <App />
+      <TaiSanContext.Provider value={taiSan}>
+        <App />
+      </TaiSanContext.Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

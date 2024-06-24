@@ -4,15 +4,15 @@ import "./App.css";
 import instance, { getProducts } from "./axios";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import TaiSan from "./components/TaiSan";
 import About from "./pages/About";
 import AuthForm from "./pages/AuthForm";
 import Home from "./pages/Home";
 import Notfound from "./pages/Notfound";
+import PrivateRoute from "./pages/PrivateRoute";
 import ProductDetail from "./pages/ProductDetail";
 import Dashboard from "./pages/admin/Dashboard";
 import ProductForm from "./pages/admin/ProductForm";
-import PrivateRoute from "./pages/PrivateRoute";
-import TaiSan from "./components/TaiSan";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -98,6 +98,7 @@ function App() {
           </Route>
           <Route path="/login" element={<AuthForm />} />
           <Route path="/register" element={<AuthForm isRegister />} />
+          <Route path="/taisan" element={<TaiSan />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
       </main>

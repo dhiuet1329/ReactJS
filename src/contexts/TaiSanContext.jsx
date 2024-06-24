@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const TaiSanContext = createContext;
+export const TaiSanContext = createContext();

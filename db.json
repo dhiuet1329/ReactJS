@@ -542,26 +542,10 @@
   ],
   "users": [
     {
-      "email": "hieu12@gmail.com",
-      "password": "$2a$10$nVRi/I4S3.gXk.MsY0DI7OcUi7fq3oU1/P4721NFYDgYry4VEAWLC",
-      "id": 1
-    },
-    {
-      "email": "hieu89@gmail.com",
-      "password": "$2a$10$oj/1SUaydgl734lDud6j6.GPfWKnzXY6esqnWjm02fQ3ZPOEYMtqW",
-      "id": 2
-    },
-    {
       "email": "admin@gmail.com",
-      "password": "$2a$10$mwxHSx5WnTltGN5XKCNZOup1DExMY2ZyyK07q/4gmf3M4NHrn901.",
+      "password": "$2a$10$pvCQlng5xdN3uD8R3sH4hulvFusgQypAQX43UIU2ti9a5ZXlT/Yzm",
       "confirmPass": "123456",
-      "id": 3
-    },
-    {
-      "email": "hieund@gmail.com",
-      "password": "$2a$10$LNGx.jrlW9XqZAwiVes7B.TDBMOpHlFGlcm/mqAYELTGOc2uGAC.2",
-      "confirmPass": "123456",
-      "id": 4
+      "id": 1
     }
   ]
 }

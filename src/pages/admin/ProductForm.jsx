@@ -34,7 +34,7 @@ const ProductForm = ({ onProduct }) => {
       })();
     }
   }, [id]);
-  }
+
   const onSubmit = (data) => {
     onProduct({ ...data, id: id });
   };
