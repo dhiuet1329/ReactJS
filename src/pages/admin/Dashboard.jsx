@@ -3,10 +3,21 @@ import { Link } from "react-router-dom";
 // import PropTypes from "prop-types";
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContext";
+import instance from "../../axios";
 
 // eslint-disable-next-line react/prop-types
 const Dashboard = () => {
   const { state, dispatch } = useContext(ProductContext);
+  const handleDelete = async (id) => {
+    try {
+      if (confirm("Are you sure ?")) {
+        await instance.delete(`/products/${id}`);
+        dispatch({ type: "DELETE_PRODUCT", payload: id });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <h1>Hello Admin</h1>
@@ -57,7 +68,7 @@ const Dashboard = () => {
                   Edit
                 </Link>
                 <button
-                  onClick={() => removeProduct(p.id)}
+                  onClick={() => handleDelete(p.id)}
                   className="btn btn-danger"
                 >
                   Delete
