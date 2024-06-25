@@ -2,27 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
+import ProductContextProvider from "./contexts/ProductContext.jsx";
 import "./index.scss";
-import { TaiSanContext } from "./contexts/TaiSanContext.jsx";
 
-const taiSan = [
-  {
-    id: 1,
-    name: "Tivi",
-    price: 1000,
-  },
-  {
-    id: 2,
-    name: "Laptop",
-    price: 2000,
-  },
-];
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <TaiSanContext.Provider value={taiSan}>
+      <ProductContextProvider>
         <App />
-      </TaiSanContext.Provider>
+      </ProductContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

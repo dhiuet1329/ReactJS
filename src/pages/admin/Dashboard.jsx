@@ -1,11 +1,12 @@
 // import React from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+import { useContext } from "react";
+import { ProductContext } from "../../contexts/ProductContext";
 
 // eslint-disable-next-line react/prop-types
-const Dashboard = ({ data, removeProduct }) => {
-  console.log(data);
-
+const Dashboard = () => {
+  const { state, dispatch } = useContext(ProductContext);
   return (
     <div>
       <h1>Hello Admin</h1>
@@ -34,11 +35,12 @@ const Dashboard = ({ data, removeProduct }) => {
             <th>Title</th>
             <th>Price</th>
             <th>Thumbnail</th>
+            <th>Description</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((p) => (
+          {state.products.map((p) => (
             <tr key={p.id}>
               <td>{p.id}</td>
               <td>{p.title}</td>
@@ -46,6 +48,7 @@ const Dashboard = ({ data, removeProduct }) => {
               <td>
                 <img src={p.thumbnail} alt={p.title} width={100} />
               </td>
+              <td>{p.description}</td>
               <td>
                 <Link
                   to={`/admin/product-form/${p.id}`}
@@ -67,7 +70,7 @@ const Dashboard = ({ data, removeProduct }) => {
     </div>
   );
 };
-Dashboard.propTypes = {
-  data: PropTypes.array.isRequired,
-};
+// Dashboard.propTypes = {
+//   data: PropTypes.array.isRequired,
+// };
 export default Dashboard;

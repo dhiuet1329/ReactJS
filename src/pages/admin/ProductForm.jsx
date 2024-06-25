@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 
 // eslint-disable-next-line react/prop-types
-const ProductForm = ({ onProduct }) => {
+const ProductForm = () => {
   //id
   const { id } = useParams();
   // console.log(id);
