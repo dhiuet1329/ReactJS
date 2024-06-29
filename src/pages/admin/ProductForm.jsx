@@ -1,19 +1,20 @@
 // import React from "react";
 
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import productSchema from "./../../schemaValid/productSchema";
 
 import instance from "../../axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { ProductContext } from "../../contexts/ProductContext";
 
 // eslint-disable-next-line react/prop-types
 const ProductForm = () => {
-  //id
-  const { id } = useParams();
+  const { dispatch } = useContext(ProductContext);
+  const navigate = useNavigate();
+  const { id } = useParams(); //id
   // console.log(id);
-
   const {
     register,
     handleSubmit,
@@ -34,13 +35,30 @@ const ProductForm = () => {
       })();
     }
   }, [id]);
-
   const onSubmit = (data) => {
-    onProduct({ ...data, id: id });
+    (async () => {
+      try {
+        if (id) {
+          //edit
+          await instance.patch(`/products/${id}`, data);
+          dispatch({ type: "EDIT_PRODUCT", payload: { id, ...data } });
+        } else {
+          //add
+          const res = await instance.post("/products", data);
+          dispatch({ type: "ADD_PRODUCT", payload: res.data });
+        }
+        if (confirm("Successfuly, redirect admin page ?")) {
+          navigate("/admin");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   };
+
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit((data) => onSubmit({ ...data, id }))}>
         <h1>{id ? "Edit product" : "Add product"}</h1>
         <div className="form-group">
           <label htmlFor="title">Title</label>

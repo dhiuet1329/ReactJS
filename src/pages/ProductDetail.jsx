@@ -10,10 +10,10 @@ const ProductDetail = () => {
   const [p, setP] = useState({});
   useEffect(() => {
     (async () => {
-      const { data } = await instance.get(`/product/${id}`);
+      const { data } = await instance.get(`/products/${id}`);
       setP(data);
     })();
-  });
+  }, []);
   return (
     <div>
       <div className="row">

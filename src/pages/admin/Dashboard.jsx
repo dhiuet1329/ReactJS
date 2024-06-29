@@ -57,9 +57,13 @@ const Dashboard = () => {
               <td>{p.title}</td>
               <td>{p.price}</td>
               <td>
-                <img src={p.thumbnail} alt={p.title} width={100} />
+                {p.thumbnail ? (
+                  <img src={p.thumbnail} alt="Updating.." width={100} />
+                ) : (
+                  "Updating.."
+                )}
               </td>
-              <td>{p.description}</td>
+              <td>{p.description || "Updating.."}</td>
               <td>
                 <Link
                   to={`/admin/product-form/${p.id}`}
