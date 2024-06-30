@@ -8,17 +8,13 @@ const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, { products: [] });
 
   useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await instance.get("/products");
-        // console.log(data);
-        dispatch({ type: "SET_PRODUCTS", payload: data });
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    const fetchAPI = async () => {
+      const { data } = await instance.get("/products");
+      console.log(data);
+      dispatch({ type: "SET_PRODUCTS", payload: data });
+    };
+    fetchAPI();
   }, []);
-
   return (
     <ProductContext.Provider value={{ state, dispatch }}>
       {children}

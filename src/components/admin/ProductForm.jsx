@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import productSchema from "./../../schemaValid/productSchema";
+import productSchema from "../../schemaValid/productSchema";
 
 import instance from "../../axios";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -40,8 +40,9 @@ const ProductForm = () => {
       try {
         if (id) {
           //edit
-          await instance.patch(`/products/${id}`, data);
-          dispatch({ type: "EDIT_PRODUCT", payload: { id, ...data } });
+          const res = await instance.patch(`/products/${id}`, data);
+          console.log(res);
+          dispatch({ type: "UPDATE_PRODUCT", payload: res.data });
         } else {
           //add
           const res = await instance.post("/products", data);
@@ -60,7 +61,7 @@ const ProductForm = () => {
     <>
       <form onSubmit={handleSubmit((data) => onSubmit({ ...data, id }))}>
         <h1>{id ? "Edit product" : "Add product"}</h1>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -72,7 +73,7 @@ const ProductForm = () => {
             <p className="text-danger">{errors.title.message}</p>
           )}
         </div>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label htmlFor="title">Price</label>
           <input
             type="number"
@@ -82,7 +83,7 @@ const ProductForm = () => {
           />
         </div>
         {errors.price && <p className="text-danger">{errors.price.message}</p>}
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label htmlFor="title">Description</label>
           <input
             type="text"
@@ -91,7 +92,7 @@ const ProductForm = () => {
             {...register("description")}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <button className=" btn btn-primary">
             {id ? "Edit product" : "Add product"}
           </button>

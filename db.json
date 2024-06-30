@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 2,
-      "title": "iPhone XX",
+      "title": "iPhone XXnvc",
       "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
       "price": 899,
       "discountPercentage": 17.94,
@@ -534,15 +534,15 @@
       ]
     },
     {
-      "title": "them san pham moi",
+      "title": "them san pham moi 198291",
       "price": 1999,
       "description": "mo ta",
       "id": 31
     },
     {
-      "title": "them sp moi 2",
+      "title": "them sp moi 21",
       "price": 100,
-      "description": "mata",
+      "description": "abc",
       "id": 32
     }
   ],
