@@ -1,50 +1,23 @@
 // import React from 'react'
 
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import HeaderAdmin from "./HeaderAdmin";
+import SideBar from "./SideBar";
 
 const LayoutAdmin = () => {
   return (
     <>
-      <header>
-        <h1>Hello Admin</h1>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/hosts">Quản lí host</Link>
-          </li>
-          <li>
-            <Link to="/">Xem thông kê</Link>
-          </li>
-        </ul>
-      </header>
-      <div className="row">
-        <div className="col-3">
-          <div className="sidebar">
-            <ul>
-              <li>
-                <Link to="/admin">Dashboard</Link>
-              </li>
-              <li>
-                <Link to="/admin/users">User</Link>
-              </li>
-              <li>
-                <Link to="/admin/products">Product</Link>
-              </li>
-              <li>
-                <Link to="/admin/categories">Categories</Link>
-              </li>
-              <li>
-                <Link to="/admin/brands">Brands</Link>
-              </li>
-            </ul>
-          </div>
+      <HeaderAdmin />
+      <div className="wrapper">
+        <div
+          className="sidebar"
+          data-background-color="white"
+          data-active-color="danger"
+        >
+          <SideBar />
         </div>
-        <div className="col-9">
-          <div className="main">
-            <Outlet />
-          </div>
+        <div className="main-panel">
+          <Outlet />
         </div>
       </div>
     </>

@@ -2,9 +2,9 @@
   "products": [
     {
       "id": 2,
-      "title": "iPhone XXnvc",
+      "title": "iPhone X",
       "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-      "price": 899,
+      "price": 10000,
       "discountPercentage": 17.94,
       "rating": 4.44,
       "stock": 34,
@@ -22,7 +22,7 @@
       "id": 3,
       "title": "Samsung Universe 9",
       "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
-      "price": 1249,
+      "price": 190000,
       "discountPercentage": 15.46,
       "rating": 4.09,
       "stock": 36,
@@ -544,6 +544,62 @@
       "price": 100,
       "description": "abc",
       "id": 32
+    },
+    {
+      "title": "thunn",
+      "price": 100,
+      "description": "",
+      "thumbnail": {
+        "0": {}
+      },
+      "id": 33
+    },
+    {
+      "title": "them anh",
+      "price": 10,
+      "description": "",
+      "thumbnail": {
+        "0": {},
+        "1": {},
+        "2": {},
+        "3": {},
+        "4": {},
+        "5": {},
+        "6": {}
+      },
+      "id": 34
+    },
+    {
+      "title": "them anh 2",
+      "price": 100,
+      "description": "An toàn",
+      "thumbnail": {
+        "0": {},
+        "1": {},
+        "2": {}
+      },
+      "id": 35
+    },
+    {
+      "title": "them anh ",
+      "price": 1000,
+      "description": "",
+      "thumbnail": null,
+      "id": 36
+    },
+    {
+      "title": "them anh 3",
+      "price": 100,
+      "description": "",
+      "thumbnail": null,
+      "id": 37
+    },
+    {
+      "title": "them anh 4",
+      "price": 100,
+      "description": "",
+      "thumbnail": "https://picsum.photos/200/300",
+      "id": 38
     }
   ],
   "users": [
@@ -552,6 +608,12 @@
       "password": "$2a$10$pvCQlng5xdN3uD8R3sH4hulvFusgQypAQX43UIU2ti9a5ZXlT/Yzm",
       "confirmPass": "123456",
       "id": 1
+    },
+    {
+      "email": "admin2@gmail.com",
+      "password": "$2a$10$xkJMCNxWXyj5.EFBnJmncuAccWcY.pYPXoGJ8vo49zQvH0XvG03ri",
+      "confirmPass": "123456",
+      "id": 2
     }
   ]
 }

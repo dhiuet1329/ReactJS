@@ -1,12 +1,13 @@
-import React from "react";
+// import React from "react";
+import HeaderAdmin from "../components/admin/HeaderAdmin";
 
 const LayoutAdmin = ({ children }) => {
-	return (
-		<div>
-			<h2>Hello, Admin</h2>
-			{children}
-		</div>
-	);
+  return (
+    <>
+      <HeaderAdmin />
+      <main className="container">{children}</main>
+    </>
+  );
 };
 
 export default LayoutAdmin;

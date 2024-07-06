@@ -8,9 +8,10 @@ import Notfound from "./pages/Notfound";
 import PrivateRoute from "./pages/PrivateRoute";
 import ProductDetail from "./pages/ProductDetail";
 import Dashboard from "./pages/admin/Dashboard";
-import LayoutClient from "./components/LayoutClient";
 import LayoutAdmin from "./components/admin/LayoutAdmin";
 import ProductForm from "./components/admin/ProductForm";
+import LayoutClient from "./components/client/LayoutClient";
+import User from "./pages/admin/User";
 
 function App() {
   // const removeProduct = (id) => {
@@ -33,35 +34,29 @@ function App() {
   return (
     <>
       {/* <Header /> */}
-      <main className="container">
-        <Routes>
-          {/* Client Routes */}
-          <Route path="/" element={<LayoutClient />}>
-            <Route index element={<Home />} />
-            <Route path="/home" element={<Navigate to="/" />} />
-            <Route path="/product-detail/:id" element={<ProductDetail />} />
-          </Route>
-          {/* Admin Routes */}
-          <Route
-            path="/admin"
-            element={
-              <PrivateRoute>
-                <LayoutAdmin />
-              </PrivateRoute>
-            }
-          >
+
+      <Routes>
+        {/* Client Routes */}
+        <Route path="/" element={<LayoutClient />}>
+          <Route index element={<Home />} />
+          <Route path="/home" element={<Navigate to="/" />} />
+          <Route path="/product-detail/:id" element={<ProductDetail />} />
+          <Route path="/login" element={<AuthForm />} />
+          <Route path="/register" element={<AuthForm isRegister />} />
+        </Route>
+        {/* Admin Routes */}
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="admin" element={<LayoutAdmin />}>
             <Route index element={<Dashboard />} />
+            <Route path="/admin/user" element={<User />} />
             <Route path="product-form" element={<ProductForm />} />
             <Route path="product-form/:id" element={<ProductForm />} />
           </Route>
-          {/* Authentication Routes */}
-          <Route path="/login" element={<AuthForm />} />
-          <Route path="/register" element={<AuthForm isRegister />} />
+        </Route>
 
-          {/* Catch-All Route */}
-          <Route path="*" element={<Notfound />} />
-        </Routes>
-      </main>
+        {/* Catch-All Route */}
+        <Route path="*" element={<Notfound />} />
+      </Routes>
 
       {/* <Footer /> */}
     </>

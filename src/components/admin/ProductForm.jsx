@@ -84,6 +84,18 @@ const ProductForm = () => {
         </div>
         {errors.price && <p className="text-danger">{errors.price.message}</p>}
         <div className="form-group mb-3">
+          <label htmlFor="thumbnail">thumbnail</label>
+          <input
+            type="text"
+            className="form-control"
+            id="thumbnail"
+            {...register("thumbnail", { required: true })}
+          />
+        </div>
+        {errors.thumbnail && (
+          <p className="text-danger">{errors.thumbnail.message}</p>
+        )}
+        <div className="form-group mb-3">
           <label htmlFor="title">Description</label>
           <input
             type="text"

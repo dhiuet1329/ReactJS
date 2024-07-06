@@ -40,6 +40,22 @@ const AuthForm = ({ isRegister }) => {
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1>{isRegister ? "Register" : "Login"}</h1>
+        {isRegister && (
+          <div className="mb-3">
+            <label htmlFor="fullname" className="form-label">
+              fullname
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="fullname"
+              {...register("fullname", { required: true })}
+            />
+            {errors.fullname?.message && (
+              <p className="text-danger">{errors.fullname?.message}</p>
+            )}
+          </div>
+        )}
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             email

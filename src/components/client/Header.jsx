@@ -31,7 +31,7 @@ export default function Header() {
         {user ? (
           <li>
             <button onClick={logout} className="btn btn-danger">
-              Hello {user?.user?.email} - Logout
+              Hello {user?.user?.fullname} - Logout
             </button>
           </li>
         ) : (

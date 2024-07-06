@@ -19,23 +19,7 @@ const Dashboard = () => {
     }
   };
   return (
-    <div>
-      <h1>Hello Admin</h1>
-
-      {/* <div className="nav">
-            <ul>
-              <li>
-                <Link to="admin">Dashboard</Link>
-              </li>
-              <li>
-                <Link to="/admin/categories">Categories</Link>
-              </li>
-              <li>
-                <Link to="/admin.user">User</Link>
-              </li>
-            </ul>
-          </div> */}
-
+    <>
       <Link className="btn btn-primary" to="/admin/product-form">
         Add new product
       </Link>
@@ -44,9 +28,11 @@ const Dashboard = () => {
           <tr>
             <th>ID</th>
             <th>Title</th>
+            <th>Brand</th>
             <th>Price</th>
             <th>Thumbnail</th>
             <th>Description</th>
+            <th>Category</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -55,6 +41,7 @@ const Dashboard = () => {
             <tr key={p.id}>
               <td>{p.id}</td>
               <td>{p.title}</td>
+              <td>{p.brand}</td>
               <td>{p.price}</td>
               <td>
                 {p.thumbnail ? (
@@ -64,6 +51,7 @@ const Dashboard = () => {
                 )}
               </td>
               <td>{p.description || "Updating.."}</td>
+              <td>{p.category}</td>
               <td>
                 <Link
                   to={`/admin/product-form/${p.id}`}
@@ -82,7 +70,7 @@ const Dashboard = () => {
           ))}
         </tbody>
       </table>
-    </div>
+    </>
   );
 };
 // Dashboard.propTypes = {
